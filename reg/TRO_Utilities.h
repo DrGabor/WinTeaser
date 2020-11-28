@@ -28,28 +28,6 @@ inline void stringSplit(std::string s,
 	}
 }
 
-inline void tf2quatFun(const Eigen::Matrix4f& Tf, Eigen::Vector4f& coeff, Eigen::Vector3f& dT) {
-	Eigen::Quaternionf quat;
-	quat = Tf.block<3, 3>(0, 0);
-	coeff = quat.coeffs();
-	dT = Tf.block(0, 3, 3, 1);
-}
-
-inline void quat2tfFun(const std::vector<float>& vq, const std::vector<float>& vT, Eigen::Matrix4f& Tf) {
-	Eigen::Quaternionf q0;
-	q0.w() = vq[0];
-	q0.x() = vq[1];
-	q0.y() = vq[2];
-	q0.z() = vq[3];
-
-	Eigen::Matrix3f rot0 = q0.normalized().toRotationMatrix();
-	Eigen::Vector3f trt0;
-	trt0 << vT[0], vT[1], vT[2];
-	Eigen::Matrix4f Tf0 = Eigen::Matrix4f::Identity();
-	Tf.block<3, 3>(0, 0) = rot0;
-	Tf.block<3, 1>(0, 3) = trt0;
-}
-
 template <typename T>
 inline void randSampleFun(const boost::shared_ptr<pcl::PointCloud<T>>& cloud_in,
 	boost::shared_ptr<pcl::PointCloud<T>>& cloud_out,
@@ -106,18 +84,6 @@ inline void voxelSampleInPlaceFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud,
 	cloud.swap(cloud_out);
 }
 
-template <typename T>
-inline void scaleCloudFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud, 
-	double dScale) {
-	for (int i = 0; i < cloud->points.size(); i++) {
-		T pt = cloud->points[i];
-		pt.x /= dScale;
-		pt.y /= dScale;
-		pt.z /= dScale;
-		cloud->points[i] = pt;
-	}
-}
-
 inline void catCloud(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_xyz,
 	const pcl::PointCloud<pcl::Normal>::Ptr& cloud_nor,
 	pcl::PointCloud<pcl::PointNormal>::Ptr& cloud_normals)
@@ -170,14 +136,8 @@ inline void read_cloud(std::string& sFileName,
 	}
 }
 
-void map_truncateFun(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr& cloud_map_color,
-	const pcl::PointCloud<pcl::PointXYZRGB>::Ptr& map_disp_sparse,
-	const Eigen::Matrix4f& rstTf,
-	const double& dLen,
-	pcl::PointCloud<pcl::PointXYZRGB>::Ptr& map_display); 
-
-class CNormalEstimator
-{
+//// estimate normal vectors of a point cloud. 
+class CNormalEstimator {
 public:
 	////
 	CNormalEstimator() {
