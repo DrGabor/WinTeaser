@@ -11,4 +11,6 @@ Teaser++[1] is a well-performed point cloud registration algorithm which can be 
 
 Enjoy it! 
 
+Disclaimer: I strongly recommend original TEASER++ in Linux since it is well maintained and has rich document. WinTeaser is mainly used for users which are unfamilar with Linux OS and want to quickly test TEASER++ on their own dataset. 
+
 [1] Yang, H., Shi, J., & Carlone, L. (2020). TEASER: Fast and Certifiable Point Cloud Registration. IEEE Transactions on Robotics.
