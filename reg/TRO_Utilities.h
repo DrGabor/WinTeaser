@@ -60,24 +60,26 @@ inline void randSampleInPlaceFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud_in
 	cloud_in.swap(cloud_out); 
 }
 
+//// the dGridSize is the length of box filter.
 template <typename T>
-inline void voxelSampleFun( boost::shared_ptr<pcl::PointCloud<T>>& cloud,
+inline void voxelSampleFun( const boost::shared_ptr<pcl::PointCloud<T>>& cloud_in,
 	boost::shared_ptr<pcl::PointCloud<T>>& cloud_out,
 	double dGridSize) {
 	if (dGridSize < 0) {
-		pcl::copyPointCloud(*cloud, *cloud_out); 
+		pcl::copyPointCloud(*cloud_in, *cloud_out); 
 		return;
 	}
 	pcl::ApproximateVoxelGrid<T> approximate_voxel_filter;
+	dGridSize = dGridSize * 2.0; 
 	approximate_voxel_filter.setLeafSize(dGridSize, dGridSize, dGridSize);
-	approximate_voxel_filter.setInputCloud(cloud);
+	approximate_voxel_filter.setInputCloud(cloud_in);
 	approximate_voxel_filter.filter(*cloud_out);
-	cloud_out->sensor_origin_      = cloud->sensor_origin_;
-	cloud_out->sensor_orientation_ = cloud->sensor_orientation_;
+	cloud_out->sensor_origin_      = cloud_in->sensor_origin_;
+	cloud_out->sensor_orientation_ = cloud_in->sensor_orientation_;
 }
 
 template <typename T>
-inline void voxelSampleInPlaceFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud,
+inline void voxelSampleInPlaceFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud_in,
 	double dGridSize) {
 	boost::shared_ptr<pcl::PointCloud<T>> cloud_out(new pcl::PointCloud<T>());
 	voxelSampleFun(cloud_in, cloud_out, dGridSize);
