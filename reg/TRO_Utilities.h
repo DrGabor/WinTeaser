@@ -83,7 +83,7 @@ inline void voxelSampleInPlaceFun(boost::shared_ptr<pcl::PointCloud<T>>& cloud_i
 	double dGridSize) {
 	boost::shared_ptr<pcl::PointCloud<T>> cloud_out(new pcl::PointCloud<T>());
 	voxelSampleFun(cloud_in, cloud_out, dGridSize);
-	cloud.swap(cloud_out);
+	cloud_in.swap(cloud_out);
 }
 
 inline void catCloud(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_xyz,
