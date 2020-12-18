@@ -32,8 +32,8 @@ namespace gabor {
 		double m_dFeatureRadius;
 
 		CFPFH() {
-			m_dSampleRadius  = 2.0;
-			m_dFeatureRadius = 1.0;
+			m_dFeatureRadius = 3.0;
+			m_dSampleRadius  = m_dFeatureRadius / 2;
 			m_cloud_raw.reset(new pcl::PointCloud<pcl::PointNormal>());
 		}
 		~CFPFH() {}
