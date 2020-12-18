@@ -11,6 +11,8 @@ Teaser++[1] is a well-performed point cloud registration algorithm which can be 
 
 Enjoy it! 
 
+PS: One of the major difference between WinTeaser and Teaser++ is the way of computing the FPFH descriptors. Teaser++ computes one FPFH descriptors for each point in point cloud. which I think this is quite computational inefficiency. Therefore in WinTeaser, the cloud is firstly subsampled into cloud_key_points which is sparse than original cloud, and then FPFH descriptor is computed for each point in cloud_key_point. During computation of FPFH, the input surface is still cloud instead of sub-sampled cloud_key_point, which ensures the accuracy of FPFH descriptor has no difference with Teaser++. The modified FPFH computation is in include/teaser_fpfh.h. 
+
 Disclaimer: I strongly recommend original TEASER++ in Linux since it is well maintained and has rich document. WinTeaser is mainly used for users which are unfamilar with Linux OS and want to quickly test TEASER++ on their own dataset. 
 
 [1] Yang, H., Shi, J., & Carlone, L. (2020). TEASER: Fast and Certifiable Point Cloud Registration. IEEE Transactions on Robotics.
