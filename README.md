@@ -18,6 +18,6 @@ PS: One of the major difference between WinTeaser and Teaser++ lies in the way o
 PPS: There are some other issues worthy to be mentioned. Firstly, the pmc library seems to be wrong when the number of point pairs is too large. This is because pmc uses omp library. If you meet this issue, just use ordinary for loop instead of omp for loop. Secondly, the running time of teaser can be hours since the maximum clique searching in pmc library. To save the time, you can change the configuration of Teaser. There is a maximum pmc search time
 in the constructor of Teaser. Both of the above issues may be occurred when the number of input point pairs is large (I think it is around 10000). Therefore, you can enlarge the feature_radius to reduce the point pair number.
 
-Disclaimer: I strongly recommend original TEASER++ in Linux since it is well maintained and has rich document. WinTeaser is mainly used for users which are unfamilar with Linux OS and want to quickly test TEASER++ on their own dataset. 
+Disclaimer: I strongly recommend to use the original TEASER++ in Linux since it is well maintained and has detailed document. WinTeaser is mainly used for users which are unfamilar with Linux OS and want to quickly test TEASER++ on their own dataset. 
 
 [1] Yang, H., Shi, J., & Carlone, L. (2020). TEASER: Fast and Certifiable Point Cloud Registration. IEEE Transactions on Robotics.
