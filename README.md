@@ -1,5 +1,7 @@
 # WinTeaser
-Teaser++[1] is a well-performed point cloud registration algorithm which can be used in computer vision and robotics. However, the original Teaser++ operates in Linux (https://github.com/MIT-SPARK/TEASER-plusplus). This reporsitory configures Teaser++ in Windows with the help of Visual Studio 2015. The main procedures are as follows:
+Teaser++[1] is a well-performed point cloud registration algorithm which can be used in computer vision and robotics. However, the original Teaser++ operates in Linux (https://github.com/MIT-SPARK/TEASER-plusplus). This reporsitory configures Teaser++ in Windows with the help of Visual Studio 2015. The linux_lib contains <sys/time.h>, <unistd.h>, <getopt.h> and <getopt.c> which not exist in Windows OS.   
+
+The main procedures are as follows:
 
 1. Install PCL-all-in-one-installer_1.8.1. 
 
